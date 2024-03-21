@@ -1,23 +1,22 @@
 const jswtoken = require('jsonwebtoken'); //get the json webtoken library.
 
-//So, basically, this function authenticates that the request that got sent from monday, is in fact from monday. Using the signing secrete, the contents of some of
-//the headers in the post request are checked, and if they all suceed then the request is real (in theory) 
+//This function authenticates that the request that got sent from our Monday.com App. It uses the signing secrete and JWT to try and decript 
+//some expected information in the request. If it succeeds, it stores some data to the session, and allows the request through, if it fails, the request
+//is stopped.
 async function authRequestMiddleware(req, res, next) {
 	try{
-		//console.log(req.body);
 		let authorization = req.headers.authorization;  //get the authentication info from the request. 
-		if (!authorization && req.query) {             //if nothing was in that part of the header, then look in the query feild instead. 
+		if (!authorization && req.query) {
 			authorization = req.query.token;
 		}
-		//console.log("hi");
-		//console.log(process.env.MONDAY_SIGNING_SECRET);
-	
+		
 		//at this point, we actually try and verify the request. 
 		//If the verifiy function fails, then we know that the request wasn't sent from our Monday app.
 		const {accountId, userId, backToUrl, shortLivedToken } = jswtoken.verify(
 			authorization,
 			process.env.MONDAY_SIGNING_SECRET
 		);  
+		
 		req.session = { accountId, userId, backToUrl, shortLivedToken };
 		next();
 	}
@@ -30,6 +29,3 @@ async function authRequestMiddleware(req, res, next) {
 module.exports = {
   authRequestMiddleware
 };
-
-
-//you need to

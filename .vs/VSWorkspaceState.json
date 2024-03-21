@@ -1,15 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\TestGmailServer",
+    "\\IntegrationServer",
+    "\\IntegrationServer\\src",
+    "\\IntegrationServer\\src\\featureControl",
+    "\\IntegrationServer\\src\\middleware",
+    "\\IntegrationServer\\src\\OAuth",
+    "\\IntegrationServer\\src\\routes",
     "\\TestGmailServer\\TestGmailServer",
-    "\\Trevor",
-    "\\Trevor\\src",
-    "\\Trevor\\src\\featureControl",
-    "\\Trevor\\src\\middleware",
-    "\\Trevor\\src\\routes",
-    "\\Trevor\\src\\tunnelHelper"
+    "\\Trevor\\src"
   ],
-  "SelectedNode": "\\Trevor\\src\\server.js",
+  "SelectedNode": "\\IntegrationServer\\src\\OAuth\\google-auth.js",
   "PreviewInSolutionExplorer": false
 }
